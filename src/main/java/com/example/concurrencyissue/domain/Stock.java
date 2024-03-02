@@ -34,4 +34,12 @@ public class Stock {
 	public static Stock create(long productId, long quantity) {
 		return new Stock(productId, quantity);
 	}
+
+	public void decrease(long quantity) {
+		if (this.quantity - quantity < 0) {
+			throw new IllegalArgumentException("재고는 0개 미만이 될 수 없습니다.");
+		}
+
+		this.quantity -= quantity;
+	}
 }
