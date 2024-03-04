@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,6 +26,9 @@ public class Stock {
 	@Column
 	private long quantity;
 
+	@Version
+	private long version;
+
 	@Builder
 	private Stock(long productId, long quantity) {
 		this.productId = productId;
@@ -39,7 +43,7 @@ public class Stock {
 		if (this.quantity - quantity < 0) {
 			throw new IllegalArgumentException("재고는 0개 미만이 될 수 없습니다.");
 		}
-		
+
 		this.quantity -= quantity;
 	}
 }
