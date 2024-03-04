@@ -39,7 +39,7 @@ public class Stock {
 		if (this.quantity - quantity < 0) {
 			throw new IllegalArgumentException("재고는 0개 미만이 될 수 없습니다.");
 		}
-
+		
 		this.quantity -= quantity;
 	}
 }

@@ -14,12 +14,12 @@ public class StockService {
 
 	private final StockRepository stockRepository;
 
-	@Transactional
-	public void decrease(Long id, long quantity) {
+	public synchronized  void decrease(Long id, long quantity) {
 		Stock stock = stockRepository.findById(id)
 			.orElseThrow(() -> new
 				IllegalArgumentException("not found stock by id"));
 
 		stock.decrease(quantity);
+		stockRepository.saveAndFlush(stock);
 	}
 }
