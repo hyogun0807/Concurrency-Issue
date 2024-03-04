@@ -13,4 +13,8 @@ public interface StockRepository extends JpaRepository <Stock, Long> {
 	@Lock(LockModeType.OPTIMISTIC)
 	@Query("select s from Stock s where s.id = :id")
 	Optional<Stock> findByIdWithOptimisticLock(Long id);
+
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
+	@Query("select s from Stock s where s.id = :id")
+	Optional<Stock> findByIdWithPessimisticLock(Long id);
 }
